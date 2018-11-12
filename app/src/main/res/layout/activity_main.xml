@@ -39,7 +39,7 @@
 
     </LinearLayout>
 
-    <!-- 産地 -->
+    <!-- 日付 -->
     <LinearLayout
         android:id="@+id/linearLayout01Date"
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
 
     </LinearLayout>
 
-    <!-- 個数 -->
+    <!-- メモ -->
     <LinearLayout
         android:id="@+id/linearLayout01Memo"
         android:layout_width="match_parent"
@@ -101,7 +101,7 @@
         <!-- inputType：表示するキーボードを数値に指定 -->
 
     </LinearLayout>
-    <!-- 品名 -->
+    <!-- バー -->
     <LinearLayout
         android:id="@+id/linearLayout01Product"
         android:layout_width="match_parent"
@@ -114,7 +114,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
-        android:text="@string/text01_product"
+        android:text="バー"
         android:textColor="#000000"
 
         android:textSize="16sp" />
@@ -155,27 +155,17 @@
     <RadioGroup
         android:id="@+id/radioGroup01"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="127dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="172dp">
+        android:layout_marginBottom="106dp">
 
         <RadioButton
             android:id="@+id/radioButton01Product"
             android:layout_width="wrap_content"
-            android:layout_height="14dp"
+            android:layout_height="wrap_content"
             android:checked="false"
-            android:text="@string/radio01_product"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/radioButton01ListView"
-            android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:layout_marginTop="8dp"
-            android:checked="false"
-            android:text="@string/radio01_listview"
+            android:text="入力バー一覧"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -185,9 +175,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:checked="false"
-            android:text="@string/radio01_tablelayout"
+            android:text="個別検索"
             android:textColor="#000000"
             android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton01ListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:checked="false"
+            android:text="詳細一覧"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
     </RadioGroup>
 
     <!-- 表示ボタン -->
@@ -201,15 +202,6 @@
         android:text="@string/button01_show"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/labelFromSub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="146dp"
-        android:layout_marginStart="76dp"
-        android:text="SubActivtyで入力した値："></TextView>
 
 
 

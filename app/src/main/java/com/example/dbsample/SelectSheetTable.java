@@ -75,13 +75,13 @@ public class SelectSheetTable extends AppCompatActivity implements View.OnFocusC
         rowHeader.setPadding(16, 12, 16, 12);       // 行のパディングを指定(左, 上, 右, 下)
 
         // ヘッダー：産地
-        TextView headerMadeIn = setTextItem("産 地", GCH);            // TextViewのカスタマイズ処理
+        TextView headerMadeIn = setTextItem("ユーザ", GCH);            // TextViewのカスタマイズ処理
         TableRow.LayoutParams paramsMadeIn = setParams(0.5f);       // LayoutParamsのカスタマイズ処理
         // ヘッダー：個数
-        TextView headerNumber = setTextItem("個 数", GCH);
+        TextView headerNumber = setTextItem("日付", GCH);
         TableRow.LayoutParams paramsNumber = setParams(0.2f);
         // ヘッダー：単価
-        TextView headerPrice = setTextItem("単 価", GCH);
+        TextView headerPrice = setTextItem("メモ", GCH);
         TableRow.LayoutParams paramsPrice = setParams(0.3f);
         // rowHeaderにヘッダータイトルを追加
         rowHeader.addView(headerMadeIn, paramsMadeIn);          // ヘッダー：産地

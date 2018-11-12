@@ -70,15 +70,14 @@ public class DBAdapter {
      * DBのレコードへ登録
      * saveDB()
      *
-     * @param product 品名
-     * @param user  産地
-     * @param date  個数
-     * @param memo   単価
+     * @param product バー
+     * @param user　ユーザ
+     * @param date　日付
+     * @param memo   メモ
      */
     public void saveDB(String product, String user, String date, String memo) {
 
         db.beginTransaction();          // トランザクション開始
-
         try {
             ContentValues values = new ContentValues();     // ContentValuesでデータを設定していく
             values.put(COL_PRODUCT, product);

@@ -32,9 +32,9 @@
     <string name="button02_alldelete">全削除</string>
 
     <!-- row_sheet_listview 05 -->
-    <string name="text05_title_madein">産地：</string>
-    <string name="text05_title_number">個数：</string>
-    <string name="text05_title_price">単価：</string>
+    <string name="text05_title_madein">ﾕｰｻﾞ：</string>
+    <string name="text05_title_number">日付：</string>
+    <string name="text05_title_price">メモ：</string>
     <!-- ここまで -->
 
     <!-- select_sheet_listview 03 -->

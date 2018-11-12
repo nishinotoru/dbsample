@@ -22,16 +22,16 @@ import com.example.dbsample.R;
 public class MainActivity extends AppCompatActivity implements
         RadioGroup.OnCheckedChangeListener {
 
-    private EditText mEditText01Product;        // 品名
+    private EditText mEditText01Product;        // バー
 
 
-    private EditText mEditText01User;         // 品名
-    private EditText mEditText01Date;         // 個数
-    private EditText mEditText01Memo;          // 単価
+    private EditText mEditText01User;         // ユーザ
+    private EditText mEditText01Date;         // 日付
+    private EditText mEditText01Memo;          // メモ
 
-    private TextView mText01Kome01;             // 品名の※印
-    private TextView mText01Kome02;             // 産地の※印
-    private TextView mText01Kome03;             // 個数の※印
+    private TextView mText01Kome01;             // ユーザの※印
+    private TextView mText01Kome02;             // 日付の※印
+    private TextView mText01Kome03;             // メモの※印
 
     private TextView mSUB;             // 単価の※印
 
@@ -127,15 +127,7 @@ public class MainActivity extends AppCompatActivity implements
      */
     private void findViews() {
 
-        mEditText01Product = (EditText) findViewById(R.id.editText01Product);   // 品名
-        //mEditText01User = (EditText) findViewById(R.id.editText01User);     // 産地
-        //mEditText01Date = (EditText) findViewById(R.id.editText01Date);     // 個数
-        //mEditText01Memo = (EditText) findViewById(R.id.editText01Memo);       // 単価
-
-        //mText01Kome01 = (TextView) findViewById(R.id.text01Kome01);             // 品名の※印
-        //mText01Kome02 = (TextView) findViewById(R.id.text01Kome02);             // 産地※印
-        //mText01Kome03 = (TextView) findViewById(R.id.text01Kome03);             // 個数の※印
-
+        mEditText01Product = (EditText) findViewById(R.id.editText01Product);   // バー
 
         mButton01Regist = (Button) findViewById(R.id.button01Regist);           // 登録ボタン
         mButton01Show = (Button) findViewById(R.id.button01Show);               // 表示ボタン

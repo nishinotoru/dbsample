@@ -118,10 +118,10 @@ public class SelectSheetListView extends AppCompatActivity {
                         c.getString(4));
 
                 Log.d("取得したCursor(ID):", String.valueOf(c.getInt(0)));
-                Log.d("取得したCursor(品名):", c.getString(1));
-                Log.d("取得したCursor(産地):", c.getString(2));
-                Log.d("取得したCursor(個数):", c.getString(3));
-                Log.d("取得したCursor(単価):", c.getString(4));
+                Log.d("取得したCursor(バー):", c.getString(1));
+                Log.d("取得したCursor(ユーザ):", c.getString(2));
+                Log.d("取得したCursor(日付):", c.getString(3));
+                Log.d("取得したCursor(メモ):", c.getString(4));
 
                 items.add(myListItem);          // 取得した要素をitemsに追加
 
