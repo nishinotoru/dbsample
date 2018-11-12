@@ -8,20 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.dbsample.MainActivity">
 
-    <!-- 品名 -->
+    <!-- ユーザー名 -->
     <LinearLayout
-        android:id="@+id/linearLayout01xProduct"
+        android:id="@+id/linearLayout01xUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/text01xProduct"
+            android:id="@+id/text01xUser"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/text01_product"
+            android:text="ユーザ"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -30,19 +30,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text="@string/text01_kome"
+            android:text="@string/text01x_kome"
             android:textColor="#FF0000"
             android:textSize="14sp" />
 
         <!-- ellipsize：文字が行に収まりきらない末尾を「...」表示 -->
         <!-- inputType：表示するキーボードを文字に指定 -->
         <EditText
-            android:id="@+id/editText01xProduct"
+            android:id="@+id/editText01xUser"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ellipsize="end"
-            android:hint="@string/text01_hinttext"
+            android:hint="@string/text01x_hinttext"
             android:inputType="text"
             android:lines="1"
             android:maxLength="12"
@@ -52,21 +52,21 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- 産地 -->
+    <!-- 日付 -->
     <LinearLayout
-        android:id="@+id/linearLayout01xMadeIn"
+        android:id="@+id/linearLayout01xDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout01xProduct"
+        android:layout_below="@+id/linearLayout01xUser"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/text01xMadeIn"
+            android:id="@+id/text01xDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/text01_madein"
+            android:text="日付"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -75,17 +75,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text="@string/text01_kome"
+            android:text="@string/text01x_kome"
             android:textColor="#FF0000"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editText01xMadeIn"
+            android:id="@+id/editText01xDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ellipsize="end"
-            android:hint="@string/text01_hinttext"
+            android:hint="@string/text01x_hinttext"
             android:inputType="text"
             android:lines="1"
             android:maxLength="12"
@@ -95,21 +95,21 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- 個数 -->
+    <!--メモ  -->
     <LinearLayout
-        android:id="@+id/linearLayout01xNumber"
+        android:id="@+id/linearLayout01xMemo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout01xPrice"
+        android:layout_below="@+id/linearLayout01xDate"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/text01xNumber"
+            android:id="@+id/text01xMemo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/text01_number"
+            android:text="メモ"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -118,69 +118,27 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:text="@string/text01_kome"
+            android:text="@string/text01x_kome"
             android:textColor="#FF0000"
             android:textSize="14sp" />
 
-        <!-- inputType：表示するキーボードを数値に指定 -->
         <EditText
-            android:id="@+id/editText01xNumber"
+            android:id="@+id/editText01xMemo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ellipsize="end"
-            android:hint="@string/text01_hintnumber"
-            android:inputType="number"
+            android:hint="@string/text01x_hinttext"
+            android:inputType="text"
             android:lines="1"
-            android:maxLength="24"
+            android:maxLength="12"
             android:maxLines="1"
             android:minLines="1"
             android:singleLine="true"
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- 単価 -->
-    <LinearLayout
-        android:id="@+id/linearLayout01xPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout01xMadeIn"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/text01xPrice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/text01_price"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/text01xKome04"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:text="@string/text01_kome"
-            android:textColor="#FF0000"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/editText01xPrice"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:ellipsize="end"
-            android:hint="@string/text01_hintnumber"
-            android:inputType="number"
-            android:lines="1"
-            android:maxLength="24"
-            android:maxLines="1"
-            android:minLines="1"
-            android:singleLine="true"
-            android:textSize="16sp" />
-    </LinearLayout>
 
     <!-- 登録ボタン -->
     <Button

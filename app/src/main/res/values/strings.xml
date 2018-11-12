@@ -10,9 +10,9 @@
 
     <!-- ここからactivity_main 01関連 -->
     <string name="text01_product">品名</string>
-    <string name="text01_madein">産地</string>
-    <string name="text01_number">個数</string>
-    <string name="text01_price">単価</string>
+    <string name="text01_user">ユーザ</string>
+    <string name="text01_date">日付</string>
+    <string name="text01_memo">メモ</string>
     <string name="text01_kome">※</string>
     <string name="text01_hinttext">全角・半角12文字以内</string>
     <string name="text01_hintnumber">半角数字</string>
@@ -53,13 +53,13 @@
 
 
     <!-- ここからactivity_main 01関連 -->
-    <string name="text01x_product">品名</string>
-    <string name="text01x_madein">産地</string>
-    <string name="text01x_number">個数</string>
-    <string name="text01x_price">単価</string>
+    <string name="text01x_user">ユーザ</string>
+    <string name="text01x_date">日付</string>
+    <string name="text01x_memo">メモ</string>
+
     <string name="text01x_kome">※</string>
-    <string name="text01x_hinttext">全角・半角12文字以内</string>
-    <string name="text01x_hintnumber">半角数字</string>
+    <string name="text01x_hinttext">半角</string>
+    <string name="text01x_hintnumber">半角</string>
     <string name="button01x_regist">保存</string>
     <string name="button01x_show">表示</string>
 

@@ -21,9 +21,9 @@ public class DBAdapter {
      */
     public final static String COL_ID = "_id";             // id
     public final static String COL_PRODUCT = "product";    // 品名
-    public final static String COL_MADEIN = "madein";      // 産地
-    public final static String COL_NUMBER = "number";      // 個数
-    public final static String COL_PRICE = "price";        // 単価
+    public final static String COL_USER = "user";      // 産地
+    public final static String COL_DATE = "date";      // 個数
+    public final static String COL_MEMO = "memo";        // 単価
 
     private SQLiteDatabase db = null;           // SQLiteDatabase
     private DBHelper dbHelper = null;           // DBHepler
@@ -71,20 +71,20 @@ public class DBAdapter {
      * saveDB()
      *
      * @param product 品名
-     * @param madein  産地
-     * @param number  個数
-     * @param price   単価
+     * @param user  産地
+     * @param date  個数
+     * @param memo   単価
      */
-    public void saveDB(String product, String madein, int number, int price) {
+    public void saveDB(String product, String user, String date, String memo) {
 
         db.beginTransaction();          // トランザクション開始
 
         try {
             ContentValues values = new ContentValues();     // ContentValuesでデータを設定していく
             values.put(COL_PRODUCT, product);
-            values.put(COL_MADEIN, madein);
-            values.put(COL_NUMBER, number);
-            values.put(COL_PRICE, price);
+            values.put(COL_USER, user);
+            values.put(COL_DATE, date);
+            values.put(COL_MEMO, memo);
 
             // insertメソッド データ登録
             // 第1引数：DBのテーブル名
@@ -201,9 +201,9 @@ public class DBAdapter {
             String createTbl = "CREATE TABLE " + DB_TABLE + " ("
                     + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COL_PRODUCT + " TEXT NOT NULL,"
-                    + COL_MADEIN + " TEXT NOT NULL,"
-                    + COL_NUMBER + " INTEGER NOT NULL,"
-                    + COL_PRICE + " INTEGER NOT NULL"
+                    + COL_USER + " TEXT NOT NULL,"
+                    + COL_DATE + " INTEGER NOT NULL,"
+                    + COL_MEMO + " INTEGER NOT NULL"
                     + ");";
 
             db.execSQL(createTbl);      //SQL文の実行

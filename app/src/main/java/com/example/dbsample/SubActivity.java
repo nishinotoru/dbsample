@@ -23,15 +23,15 @@ public class SubActivity extends AppCompatActivity
         //RadioGroup.OnCheckedChangeListener
 {
 
-    private EditText mEditText01xProduct;        // 品名
-    private EditText mEditText01xMadeIn;         // 品名
-    private EditText mEditText01xNumber;         // 個数
-    private EditText mEditText01xPrice;          // 単価
+    private EditText mEditText01xUser;        // ユーザー
+    private EditText mEditText01xDate;         // 日付
+    private EditText mEditText01xMemo;         // メモ
 
-    private TextView mText01xKome01;             // 品名の※印
-    private TextView mText01xKome02;             // 産地の※印
-    private TextView mText01xKome03;             // 個数の※印
-    private TextView mText01xKome04;             // 単価の※印
+
+    private TextView mText01xKome01;             // ユーザーの※印
+    private TextView mText01xKome02;             // 日付の※印
+    private TextView mText01xKome03;             // メモの※印
+
 
     private Button mButton01xRegist;             // 登録ボタン
     //private Button mButton01xShow;               // 表示ボタン
@@ -62,9 +62,13 @@ public class SubActivity extends AppCompatActivity
                         (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-                EditText textInput = (EditText)findViewById(R.id.editText01xProduct);
+                EditText textInput1 = (EditText)findViewById(R.id.editText01xUser);
+                EditText textInput2 = (EditText)findViewById(R.id.editText01xDate);
+                EditText textInput3 = (EditText)findViewById(R.id.editText01xMemo);
                 Intent intent = new Intent();
-                intent.putExtra("SUB_INPUT_STRING", textInput.getText().toString());
+                intent.putExtra("SUB_INPUT_STRING1", textInput1.getText().toString());
+                intent.putExtra("SUB_INPUT_STRING2", textInput2.getText().toString());
+                intent.putExtra("SUB_INPUT_STRING3", textInput3.getText().toString());
                 setResult(RESULT_OK,intent);
 
                 finish();
@@ -96,15 +100,15 @@ public class SubActivity extends AppCompatActivity
      */
     private void findViews() {
 
-        mEditText01xProduct = (EditText) findViewById(R.id.editText01xProduct);   // 品名
-        mEditText01xMadeIn = (EditText) findViewById(R.id.editText01xMadeIn);     // 産地
-        mEditText01xNumber = (EditText) findViewById(R.id.editText01xNumber);     // 個数
-        mEditText01xPrice = (EditText) findViewById(R.id.editText01xPrice);       // 単価
+        mEditText01xUser = (EditText) findViewById(R.id.editText01xUser);   // ユーザー
+        mEditText01xDate = (EditText) findViewById(R.id.editText01xDate);     // 日付
+        mEditText01xMemo = (EditText) findViewById(R.id.editText01xMemo);     // メモ
 
-        mText01xKome01 = (TextView) findViewById(R.id.text01xKome01);             // 品名の※印
-        mText01xKome02 = (TextView) findViewById(R.id.text01xKome02);             // 産地※印
-        mText01xKome03 = (TextView) findViewById(R.id.text01xKome03);             // 個数の※印
-        mText01xKome04 = (TextView) findViewById(R.id.text01xKome04);             // 単価の※印
+
+        mText01xKome01 = (TextView) findViewById(R.id.text01xKome01);             // ユーザーの※印
+        mText01xKome02 = (TextView) findViewById(R.id.text01xKome02);             // 日付の※印
+        mText01xKome03 = (TextView) findViewById(R.id.text01xKome03);             // メモの※印
+
 
         mButton01xRegist = (Button) findViewById(R.id.button01xRegist);           // 登録ボタン
         //mButton01xShow = (Button) findViewById(R.id.button01xShow);               // 表示ボタン
@@ -118,16 +122,16 @@ public class SubActivity extends AppCompatActivity
      * init()
      */
     private void init() {
-        mEditText01xProduct.setText("");
-        mEditText01xMadeIn.setText("");
-        mEditText01xNumber.setText("");
-        mEditText01xPrice.setText("");
+        mEditText01xUser.setText("");
+        mEditText01xDate.setText("");
+        mEditText01xMemo.setText("");
+
 
         mText01xKome01.setText("");
         mText01xKome02.setText("");
         mText01xKome03.setText("");
-        mText01xKome04.setText("");
-        mEditText01xProduct.requestFocus();      // フォーカスを品名のEditTextに指定
+
+        mEditText01xUser.requestFocus();      // フォーカスを品名のEditTextに指定
     }
 
     /**
@@ -156,51 +160,46 @@ public class SubActivity extends AppCompatActivity
     private void saveList() {
 
         // 各EditTextで入力されたテキストを取得
-        String strProduct = mEditText01xProduct.getText().toString();
-        String strMadeIn = mEditText01xMadeIn.getText().toString();
-        String strNumber = mEditText01xNumber.getText().toString();
-        String strPrice = mEditText01xPrice.getText().toString();
+        String strUser = mEditText01xUser.getText().toString();
+        String strDate = mEditText01xDate.getText().toString();
+        String strMemo = mEditText01xMemo.getText().toString();
+
 
         // EditTextが空白の場合
-        if (strProduct.equals("") || strMadeIn.equals("") || strNumber.equals("") || strPrice.equals("")) {
+        if (strUser.equals("") || strDate.equals("") || strMemo.equals("") ) {
 
-            if (strProduct.equals("")) {
+            if (strUser.equals("")) {
                 mText01xKome01.setText("※");     // 品名が空白の場合、※印を表示
             } else {
                 mText01xKome01.setText("");      // 空白でない場合は※印を消す
             }
 
-            if (strMadeIn.equals("")) {
+            if (strDate.equals("")) {
                 mText01xKome02.setText("※");     // 産地が空白の場合、※印を表示
             } else {
                 mText01xKome02.setText("");      // 空白でない場合は※印を消す
             }
 
-            if (strNumber.equals("")) {
+            if (strMemo.equals("")) {
                 mText01xKome03.setText("※");     // 個数が空白の場合、※印を表示
             } else {
                 mText01xKome03.setText("");      // 空白でない場合は※印を消す
             }
 
-            if (strPrice.equals("")) {
-                mText01xKome04.setText("※");     // 単価が空白の場合、※印を表示
-            } else {
-                mText01xKome04.setText("");      // 空白でない場合は※印を消す
-            }
 
             Toast.makeText(SubActivity.this, "※の箇所を入力して下さい。", Toast.LENGTH_SHORT).show();
 
         } else {        // EditTextが全て入力されている場合
 
             // 入力された単価と個数は文字列からint型へ変換
-            int iNumber = Integer.parseInt(strNumber);
-            int iPrice = Integer.parseInt(strPrice);
+            //int iNumber = Integer.parseInt(strNumber);
+            //int iPrice = Integer.parseInt(strPrice);
 
             // DBへの登録処理
-            DBAdapter dbAdapter = new DBAdapter(this);
-            dbAdapter.openDB();                                         // DBの読み書き
-            dbAdapter.saveDB(strProduct, strMadeIn, iNumber, iPrice);   // DBに登録
-            dbAdapter.closeDB();                                        // DBを閉じる
+            //DBAdapter dbAdapter = new DBAdapter(this);
+            //dbAdapter.openDB();                                         // DBの読み書き
+            //dbAdapter.saveDB(strProduct, strMadeIn, iNumber, iPrice);   // DBに登録
+            //dbAdapter.closeDB();                                        // DBを閉じる
 
             init();     // 初期値設定
 

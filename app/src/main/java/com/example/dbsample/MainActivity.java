@@ -23,14 +23,18 @@ public class MainActivity extends AppCompatActivity implements
         RadioGroup.OnCheckedChangeListener {
 
     private EditText mEditText01Product;        // 品名
-    private EditText mEditText01MadeIn;         // 品名
-    private EditText mEditText01Number;         // 個数
-    private EditText mEditText01Price;          // 単価
+
+
+    private EditText mEditText01User;         // 品名
+    private EditText mEditText01Date;         // 個数
+    private EditText mEditText01Memo;          // 単価
 
     private TextView mText01Kome01;             // 品名の※印
     private TextView mText01Kome02;             // 産地の※印
     private TextView mText01Kome03;             // 個数の※印
-    private TextView mText01Kome04;             // 単価の※印
+
+    private TextView mSUB;             // 単価の※印
+
 
     private Button mButton01Regist;             // 登録ボタン
     private Button mButton01Show;               // 表示ボタン
@@ -91,18 +95,25 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        TextView label = (TextView)findViewById(R.id.labelFromSub);
+        TextView label1 = (TextView)findViewById(R.id.text01Kome01);
+        TextView label2 = (TextView)findViewById(R.id.text01Kome02);
+        TextView label3 = (TextView)findViewById(R.id.text01Kome03);
+
+
+
         if (requestCode == SUBACTIVITY){
             if (resultCode == RESULT_OK){
                 Bundle extras = intent.getExtras();
+                label1.setText(extras.getString("SUB_INPUT_STRING1"));
+                mText01Kome01 = (TextView) findViewById(R.id.text01Kome01);
 
-                //if (extras != null){
-                    label.setText(extras.getString("SUB_INPUT_STRING"));
-                //}else{
-                    //label.setText("SubActivityで入力した値:" + "extra is null");
-                //}
-            //}else{
-              //  label.setText("SubActivityで入力した値:");
+                label2.setText(extras.getString("SUB_INPUT_STRING2"));
+                mText01Kome02 = (TextView) findViewById(R.id.text01Kome02);
+
+                label3.setText(extras.getString("SUB_INPUT_STRING3"));
+                mText01Kome03 = (TextView) findViewById(R.id.text01Kome03);
+
+
             }
         }
     }
@@ -117,14 +128,14 @@ public class MainActivity extends AppCompatActivity implements
     private void findViews() {
 
         mEditText01Product = (EditText) findViewById(R.id.editText01Product);   // 品名
-        mEditText01MadeIn = (EditText) findViewById(R.id.editText01MadeIn);     // 産地
-        mEditText01Number = (EditText) findViewById(R.id.editText01Number);     // 個数
-        mEditText01Price = (EditText) findViewById(R.id.editText01Price);       // 単価
+        //mEditText01User = (EditText) findViewById(R.id.editText01User);     // 産地
+        //mEditText01Date = (EditText) findViewById(R.id.editText01Date);     // 個数
+        //mEditText01Memo = (EditText) findViewById(R.id.editText01Memo);       // 単価
 
-        mText01Kome01 = (TextView) findViewById(R.id.text01Kome01);             // 品名の※印
-        mText01Kome02 = (TextView) findViewById(R.id.text01Kome02);             // 産地※印
-        mText01Kome03 = (TextView) findViewById(R.id.text01Kome03);             // 個数の※印
-        mText01Kome04 = (TextView) findViewById(R.id.text01Kome04);             // 単価の※印
+        //mText01Kome01 = (TextView) findViewById(R.id.text01Kome01);             // 品名の※印
+        //mText01Kome02 = (TextView) findViewById(R.id.text01Kome02);             // 産地※印
+        //mText01Kome03 = (TextView) findViewById(R.id.text01Kome03);             // 個数の※印
+
 
         mButton01Regist = (Button) findViewById(R.id.button01Regist);           // 登録ボタン
         mButton01Show = (Button) findViewById(R.id.button01Show);               // 表示ボタン
@@ -139,14 +150,14 @@ public class MainActivity extends AppCompatActivity implements
      */
     private void init() {
         mEditText01Product.setText("");
-        mEditText01MadeIn.setText("");
-        mEditText01Number.setText("");
-        mEditText01Price.setText("");
+        //mEditText01MadeIn.setText("");
+        //mEditText01Number.setText("");
+        //mEditText01Price.setText("");
 
-        mText01Kome01.setText("");
-        mText01Kome02.setText("");
-        mText01Kome03.setText("");
-        mText01Kome04.setText("");
+        //mText01Kome01.setText("");
+        //mText01Kome02.setText("");
+        //mText01Kome03.setText("");
+        //mText01Kome04.setText("");
         mEditText01Product.requestFocus();      // フォーカスを品名のEditTextに指定
     }
 
@@ -177,54 +188,55 @@ public class MainActivity extends AppCompatActivity implements
 
         // 各EditTextで入力されたテキストを取得
         String strProduct = mEditText01Product.getText().toString();
-        String strMadeIn = mEditText01MadeIn.getText().toString();
-        String strNumber = mEditText01Number.getText().toString();
-        String strPrice = mEditText01Price.getText().toString();
+        String strUser = mText01Kome01.getText().toString();
+        String strDate = mText01Kome02.getText().toString();
+        String strMemo = mText01Kome03.getText().toString();
+
+
+
+        //String strMadeIn = mEditText01MadeIn.getText().toString();
+        //String strNumber = mEditText01Number.getText().toString();
+        //String strPrice = mEditText01Price.getText().toString();
 
         // EditTextが空白の場合
-        if (strProduct.equals("") || strMadeIn.equals("") || strNumber.equals("") || strPrice.equals("")) {
+        //if (strProduct.equals("") )) {
 
-            if (strProduct.equals("")) {
-                mText01Kome01.setText("※");     // 品名が空白の場合、※印を表示
-            } else {
-                mText01Kome01.setText("");      // 空白でない場合は※印を消す
-            }
+            //if (strProduct.equals("")) {
+              //  mText01Kome01.setText("※");     // 品名が空白の場合、※印を表示
+            //} else {
+            //    mText01Kome01.setText("");      // 空白でない場合は※印を消す
+            //}
 
-            if (strMadeIn.equals("")) {
-                mText01Kome02.setText("※");     // 産地が空白の場合、※印を表示
-            } else {
-                mText01Kome02.setText("");      // 空白でない場合は※印を消す
-            }
+            //if (strMadeIn.equals("")) {
+            //    mText01Kome02.setText("※");     // 産地が空白の場合、※印を表示
+            //} else {
+            //    mText01Kome02.setText("");      // 空白でない場合は※印を消す
+           // }
 
-            if (strNumber.equals("")) {
-                mText01Kome03.setText("※");     // 個数が空白の場合、※印を表示
-            } else {
-                mText01Kome03.setText("");      // 空白でない場合は※印を消す
-            }
+            //if (strNumber.equals("")) {
+            //    mText01Kome03.setText("※");     // 個数が空白の場合、※印を表示
+            //} else {
+            //    mText01Kome03.setText("");      // 空白でない場合は※印を消す
+            //}
 
-            if (strPrice.equals("")) {
-                mText01Kome04.setText("※");     // 単価が空白の場合、※印を表示
-            } else {
-                mText01Kome04.setText("");      // 空白でない場合は※印を消す
-            }
+            //
+            //Toast.makeText(MainActivity.this, "※の箇所を入力して下さい。", Toast.LENGTH_SHORT).show();
 
-            Toast.makeText(MainActivity.this, "※の箇所を入力して下さい。", Toast.LENGTH_SHORT).show();
-
-        } else {        // EditTextが全て入力されている場合
+        //} else {        // EditTextが全て入力されている場合
 
             // 入力された単価と個数は文字列からint型へ変換
-            int iNumber = Integer.parseInt(strNumber);
-            int iPrice = Integer.parseInt(strPrice);
+            //int iNumber = Integer.parseInt(strNumber);
+            //int iPrice = Integer.parseInt(strPrice);
 
             // DBへの登録処理
             DBAdapter dbAdapter = new DBAdapter(this);
             dbAdapter.openDB();                                         // DBの読み書き
-            dbAdapter.saveDB(strProduct, strMadeIn, iNumber, iPrice);   // DBに登録
+            dbAdapter.saveDB(strProduct, strUser, strDate, strMemo);   // DBに登録
             dbAdapter.closeDB();                                        // DBを閉じる
 
             init();     // 初期値設定
 
-        }
+        //}
 
     }
 
