@@ -1,7 +1,11 @@
 package com.example.dbsample;
 
+import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -11,9 +15,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.dbsample.R;
+
+import com.densowave.barcode.*;
+import com.densowave.barcode.decoder.*;
+import com.densowave.barcode.decoderparams.*;
+
 
 /**
  * メイン画面に関連するクラス
@@ -43,12 +53,46 @@ public class MainActivity extends AppCompatActivity implements
 
     private Intent intent;                      // インテント
 
+
     private static final int SUBACTIVITY = 1;
 
+    private IntentFilter filter;
+
+
+    //Button b1 = null;
+    ReaderManager m_RM = null;
+
+//バーコードスキャンイベント受信後処理
+    private final BroadcastReceiver myDataReceiver = new
+            BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (intent.getAction().equals(GeneralString.Intent_PASS_TO_APP))
+                    {
+// Fetch data from the intent
+                        String sDataStr = intent.getStringExtra(GeneralString.BcReaderData);
+                        Toast.makeText(MainActivity.this, "Decoded data is " + sDataStr,
+                                Toast.LENGTH_SHORT).show();
+                        TextView mEditText01Product = (TextView)findViewById(R.id.editText01Product);
+                        mEditText01Product.setText(intent.getStringExtra(GeneralString.BcReaderData));
+                    }}
+            };
+
+    //バーコードスキャンイベント読み取り処理
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        m_RM = ReaderManager.InitInstance(this);
+        filter = new IntentFilter();
+        filter.addAction(GeneralString.Intent_PASS_TO_APP);
+        registerReceiver(myDataReceiver, filter);
+
+
+
+
+
 
         intent = new Intent(MainActivity.this, SubActivity.class);
         //startActivity(intent);      // 各画面へ遷移
@@ -58,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements
         findViews();        // 各部品の結びつけ処理
 
         init();             //初期値設定
+
 
         // ラジオボタン選択時
         mRadioGroup01Show.setOnCheckedChangeListener(this);
@@ -179,6 +224,8 @@ public class MainActivity extends AppCompatActivity implements
     private void saveList() {
 
         // 各EditTextで入力されたテキストを取得
+
+
         String strProduct = mEditText01Product.getText().toString();
         String strUser = mText01Kome01.getText().toString();
         String strDate = mText01Kome02.getText().toString();
@@ -256,4 +303,8 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+
 }
+
+
+
