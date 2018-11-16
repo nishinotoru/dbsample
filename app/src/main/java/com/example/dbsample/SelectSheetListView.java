@@ -11,9 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,12 @@ public class SelectSheetListView extends AppCompatActivity {
     private List<MyListItem> items;
     private ListView mListView03;
     protected MyListItem myListItem;
+
+
+    private Button mButton03AllDelete;          // 全削除ボタン
+
+
+
 
     // 参照するDBのカラム：ID,品名,産地,個数,単価の全部なのでnullを指定
     private String[] columns = null;
@@ -91,6 +100,34 @@ public class SelectSheetListView extends AppCompatActivity {
                 return false;
             }
         });
+
+        // 全削除ボタン押下時処理
+
+        mButton03AllDelete = (Button) findViewById(R.id.button03AllDelete);         // 全削除ボタン
+
+
+        mButton03AllDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //if(!items.isEmpty()) {
+                    dbAdapter.openDB();     // DBの読み込み(読み書きの方)
+                    dbAdapter.allDelete();  // DBのレコードを全削除
+                    dbAdapter.closeDB();    // DBを閉じる
+                   loadMyList();
+                    //ArrayAdapterに対してListViewのリスト(items)の更新
+                  //  adapter.clear();
+                  //  adapter.addAll(items);
+                  //  adapter.notifyDataSetChanged(); // // Viewの更新
+
+                //}else {
+                  //  Toast.makeText(SelectSheetProduct.this, "登録されているデータがありません。", Toast.LENGTH_SHORT).show();
+                //}
+
+            }
+        });
+
+
     }
 
     /**

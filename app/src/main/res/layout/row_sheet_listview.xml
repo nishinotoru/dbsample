@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- タイトル：産地 -->
+        <!-- タイトル：ユーザ -->
         <TextView
             android:id="@+id/text05TitleMadeIn"
             android:layout_width="0dp"

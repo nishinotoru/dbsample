@@ -59,10 +59,11 @@ public class MainActivity extends AppCompatActivity implements
     private IntentFilter filter;
 
 
-    //Button b1 = null;
+
+
     ReaderManager m_RM = null;
 
-//バーコードスキャンイベント受信後処理
+//デンソーバーコードスキャンイベント受信後処理
     private final BroadcastReceiver myDataReceiver = new
             BroadcastReceiver() {
                 @Override
@@ -71,14 +72,14 @@ public class MainActivity extends AppCompatActivity implements
                     {
 // Fetch data from the intent
                         String sDataStr = intent.getStringExtra(GeneralString.BcReaderData);
-                        Toast.makeText(MainActivity.this, "Decoded data is " + sDataStr,
-                                Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Decoded data is " + sDataStr,
+                        //        Toast.LENGTH_SHORT).show();
                         TextView mEditText01Product = (TextView)findViewById(R.id.editText01Product);
                         mEditText01Product.setText(intent.getStringExtra(GeneralString.BcReaderData));
                     }}
             };
 
-    //バーコードスキャンイベント読み取り処理
+//デンソーバーコードスキャンイベント読み取り処理
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

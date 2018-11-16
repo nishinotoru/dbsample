@@ -11,16 +11,25 @@
     <!-- 説明 -->
     <TextView
         android:id="@+id/text03TitleDetail"
-        android:layout_width="match_parent"
+        android:layout_width="102dp"
         android:layout_height="wrap_content"
-        android:text="@string/text03_title_detail"
+        android:text="詳細一覧"
         android:textColor="#333333" />
 
     <!-- ListView -->
     <ListView
         android:id="@+id/listView03"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="451dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp" />
+
+    <!-- 全削除ボタン -->
+    <Button
+        android:id="@+id/button03AllDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="@string/button03_alldelete" />
+
 </LinearLayout>

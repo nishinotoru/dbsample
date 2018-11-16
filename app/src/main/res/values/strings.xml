@@ -35,10 +35,12 @@
     <string name="text05_title_madein">ﾕｰｻﾞ：</string>
     <string name="text05_title_number">日付：</string>
     <string name="text05_title_price">メモ：</string>
+
     <!-- ここまで -->
 
     <!-- select_sheet_listview 03 -->
     <string name="text03_title_detail">BaseAdapterを使いListViewをカスタムしてリスト表示します。</string>
+    <string name="button03_alldelete">全削除</string>
 
     <!-- select_sheet_table 04 -->
     <string name="text04_title_detail">SearchViewを使って品名を検索し、DBから取得したデータをTableRowに加えていく表示の仕方です。</string>

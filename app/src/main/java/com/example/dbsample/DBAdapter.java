@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBAdapter {
 
-    private final static String DB_NAME = "sample.db";      // DB名
+    private final static String DB_NAME = "samplex.db";      // DB名
     private final static String DB_TABLE = "mySheet";       // DBのテーブル名
     private final static int DB_VERSION = 1;                // DBのバージョン
 
@@ -223,4 +223,7 @@ public class DBAdapter {
             onCreate(db);
         }
     }
+
+
+
 }
