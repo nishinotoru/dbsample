@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements
     private Button mButton01Regist;             // 登録ボタン
     private Button mButton01Show;               // 表示ボタン
 
+    private Button mButton01Fin;               // 終了ボタン
+
+
     private RadioGroup mRadioGroup01Show;       // 選択用ラジオボタングループ
 
     private Intent intent;                      // インテント
@@ -76,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements
                         //        Toast.LENGTH_SHORT).show();
                         TextView mEditText01Product = (TextView)findViewById(R.id.editText01Product);
                         mEditText01Product.setText(intent.getStringExtra(GeneralString.BcReaderData));
+
+                        // DBに登録
+                        saveList();
+
+
+
                     }}
             };
 
@@ -136,6 +145,16 @@ public class MainActivity extends AppCompatActivity implements
 
             }
         });
+
+        // 表示ボタン押下時処理
+        mButton01Fin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
     }
 
     @Override
@@ -178,6 +197,9 @@ public class MainActivity extends AppCompatActivity implements
         mButton01Regist = (Button) findViewById(R.id.button01Regist);           // 登録ボタン
         mButton01Show = (Button) findViewById(R.id.button01Show);               // 表示ボタン
 
+        mButton01Fin = (Button) findViewById(R.id.button01Fin);               // 終了ボタン
+
+
         mRadioGroup01Show = (RadioGroup) findViewById(R.id.radioGroup01);       // 選択用ラジオボタングループ
 
     }
@@ -206,15 +228,15 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
-            case R.id.radioButton01Product:         // 品名一覧(ListView×ArrayAdapter)を選択した場合
-                intent = new Intent(MainActivity.this, SelectSheetProduct.class);
-                break;
+            //case R.id.radioButton01Product:         // 品名一覧(ListView×ArrayAdapter)を選択した場合
+            //    intent = new Intent(MainActivity.this, SelectSheetProduct.class);
+            //    break;
             case R.id.radioButton01ListView:        // ListView表示を選択した場合
                 intent = new Intent(MainActivity.this, SelectSheetListView.class);
                 break;
-            case R.id.radioButton01TableLayout:     // TableLayout表示を選択した場合
-                intent = new Intent(MainActivity.this, SelectSheetTable.class);
-                break;
+            //case R.id.radioButton01TableLayout:     // TableLayout表示を選択した場合
+            //    intent = new Intent(MainActivity.this, SelectSheetTable.class);
+            //    break;
         }
     }
 

@@ -155,29 +155,29 @@
     <RadioGroup
         android:id="@+id/radioGroup01"
         android:layout_width="match_parent"
-        android:layout_height="127dp"
+        android:layout_height="54dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="106dp">
+        android:layout_marginBottom="204dp">
 
-        <RadioButton
-            android:id="@+id/radioButton01Product"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="入力バー一覧"
-            android:textColor="#000000"
-            android:textSize="16sp" />
 
-        <RadioButton
-            android:id="@+id/radioButton01TableLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:checked="false"
-            android:text="個別検索"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+        // android:id="@+id/radioButton01Product"
+        // android:layout_width="wrap_content"
+        // android:layout_height="wrap_content"
+        // android:checked="false"
+        // android:text="入力バー一覧"
+        // android:textColor="#000000"
+        // android:textSize="16sp" />
+
+
+        // android:id="@+id/radioButton01TableLayout"
+        //android:layout_width="wrap_content"
+        //android:layout_height="wrap_content"
+        // android:layout_marginTop="8dp"
+        // android:checked="false"
+        // android:text="個別検索"
+        // android:textColor="#000000"
+        // android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/radioButton01ListView"
@@ -198,11 +198,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="139dp"
         android:text="@string/button01_show"
         android:textSize="16sp" />
 
-
+    <!-- 終了ボタン -->
+    <Button
+        android:id="@+id/button01Fin"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="63dp"
+        android:text="終了"
+       android:textSize="16sp" />
 
 
 </RelativeLayout>
