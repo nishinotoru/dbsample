@@ -19,6 +19,8 @@
     <string name="button01_regist">登録</string>
     <string name="button01_show">表示</string>
 
+
+
     <!-- 選択用RadioButton -->
     <string name="radio01_product">品名一覧 (ListView×ArrayAdapter)</string>
     <string name="radio01_listview">ListView表示 (ListView×BaseAdapter)</string>

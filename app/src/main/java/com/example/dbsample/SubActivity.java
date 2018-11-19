@@ -14,6 +14,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.densowave.barcode.*;
+import com.densowave.barcode.decoder.*;
+import com.densowave.barcode.decoderparams.*;
+
+import android.content.BroadcastReceiver;
+
+import android.content.IntentFilter;
+
+
+
 /**
  * メイン画面に関連するクラス
  * MainActivity
@@ -40,12 +50,20 @@ public class SubActivity extends AppCompatActivity
 
     //private Intent intent;                      // インテント
 
-    @Override
+
+
+
+
+
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
 
-        findViews();        // 各部品の結びつけ処理
+
+
+            findViews();        // 各部品の結びつけ処理
 
         init();             //初期値設定
 
@@ -132,6 +150,7 @@ public class SubActivity extends AppCompatActivity
         mText01xKome03.setText("");
 
         mEditText01xUser.requestFocus();      // フォーカスを品名のEditTextに指定
+
     }
 
     /**
@@ -230,5 +249,9 @@ public class SubActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 
 }

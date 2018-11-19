@@ -198,7 +198,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="139dp"
+        android:layout_marginBottom="147dp"
         android:text="@string/button01_show"
         android:textSize="16sp" />
 
@@ -209,9 +209,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="63dp"
+        android:layout_marginBottom="51dp"
         android:text="終了"
-       android:textSize="16sp" />
+        android:textSize="16sp" />
 
+    <!-- 終了ボタン -->
+    <Button
+        android:id="@+id/button01First"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="95dp"
+        android:text="初期画面"
+        android:textSize="16sp" />
 
 </RelativeLayout>

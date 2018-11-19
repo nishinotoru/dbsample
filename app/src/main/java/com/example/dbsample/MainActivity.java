@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private Button mButton01Fin;               // 終了ボタン
 
+    private Button mButton01First;               // 第一画面戻りボタン
 
     private RadioGroup mRadioGroup01Show;       // 選択用ラジオボタングループ
 
@@ -60,40 +61,54 @@ public class MainActivity extends AppCompatActivity implements
     private static final int SUBACTIVITY = 1;
 
     private IntentFilter filter;
+    private String scanData;
 
-
+    private ReaderManager _myReaderManager = null;
 
 
     ReaderManager m_RM = null;
 
-//デンソーバーコードスキャンイベント受信後処理
+    //デンソーバーコードスキャンイベント受信後処理
     private final BroadcastReceiver myDataReceiver = new
             BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    if (intent.getAction().equals(GeneralString.Intent_PASS_TO_APP))
-                    {
+                    if (intent.getAction().equals(GeneralString.Intent_PASS_TO_APP)) {
+
+
 // Fetch data from the intent
-                        String sDataStr = intent.getStringExtra(GeneralString.BcReaderData);
+                        //  String sDataStr = intent.getStringExtra(GeneralString.BcReaderData);
                         //Toast.makeText(MainActivity.this, "Decoded data is " + sDataStr,
                         //        Toast.LENGTH_SHORT).show();
-                        TextView mEditText01Product = (TextView)findViewById(R.id.editText01Product);
+                        TextView mEditText01Product = (TextView) findViewById(R.id.editText01Product);
                         mEditText01Product.setText(intent.getStringExtra(GeneralString.BcReaderData));
-
+                        scanData=intent.getStringExtra(GeneralString.BcReaderData);
                         // DBに登録
-                        saveList();
+                        //saveList();
+                    }
+
+                    if (intent.getAction().equals(GeneralString.Intent_READERSERVICE_CONNECTED)) {
+
+                        initReadParam();
 
 
+                    }
 
-                    }}
+
+                }
+
+
             };
 
-//デンソーバーコードスキャンイベント読み取り処理
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //デンソーバーコードスキャンイベント読み取り処理
         m_RM = ReaderManager.InitInstance(this);
         filter = new IntentFilter();
         filter.addAction(GeneralString.Intent_PASS_TO_APP);
@@ -105,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements
 
 
         intent = new Intent(MainActivity.this, SubActivity.class);
-        //startActivity(intent);      // 各画面へ遷移
 
         startActivityForResult(intent, SUBACTIVITY);
 
@@ -133,6 +147,30 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+        if (scanData != null) {
+            saveList();
+        };
+
+
+
+
+
+        // 終了ボタン押下時処理
+        mButton01Fin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        // 終了ボタン押下時処理
+        mButton01First.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(intent, SUBACTIVITY);
+                }
+        });
+
         // 表示ボタン押下時処理
         mButton01Show.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,13 +184,6 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        // 表示ボタン押下時処理
-        mButton01Fin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
 
     }
@@ -195,10 +226,12 @@ public class MainActivity extends AppCompatActivity implements
         mEditText01Product = (EditText) findViewById(R.id.editText01Product);   // バー
 
         mButton01Regist = (Button) findViewById(R.id.button01Regist);           // 登録ボタン
+
         mButton01Show = (Button) findViewById(R.id.button01Show);               // 表示ボタン
 
         mButton01Fin = (Button) findViewById(R.id.button01Fin);               // 終了ボタン
 
+        mButton01First = (Button) findViewById(R.id.button01First);               // 終了ボタン
 
         mRadioGroup01Show = (RadioGroup) findViewById(R.id.radioGroup01);       // 選択用ラジオボタングループ
 
@@ -248,8 +281,9 @@ public class MainActivity extends AppCompatActivity implements
 
         // 各EditTextで入力されたテキストを取得
 
-
         String strProduct = mEditText01Product.getText().toString();
+
+
         String strUser = mText01Kome01.getText().toString();
         String strDate = mText01Kome02.getText().toString();
         String strMemo = mText01Kome03.getText().toString();
@@ -325,6 +359,195 @@ public class MainActivity extends AppCompatActivity implements
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+    //Initialise Reader Parameter
+    private void initReadParam(){
+        ClResult ret;
+
+        //Set to default
+        //ret = _myReaderManager.ResetReaderToDefault();
+        //if (ret != ClResult.S_OK)
+        //{
+        //    Toast.makeText(this, "Fail to ResetReaderToDefault()", Toast.LENGTH_SHORT).show();
+        //    return;
+        //}
+
+        //Reader Output Configuration
+        {
+            ReaderOutputConfiguration settings = new ReaderOutputConfiguration();
+
+            //Get Settings
+            ret = _myReaderManager.Get_ReaderOutputConfiguration(settings);
+            if (ret != ClResult.S_OK)
+            {
+                Toast.makeText(this, "Fail to Get_ReaderOutputConfiguration()", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            settings.enableKeyboardEmulation = KeyboardEmulationType.None;
+            //settings.enableKeyboardEmulation = KeyboardEmulationType.InputMethod;
+            //settings.enableKeyboardEmulation = KeyboardEmulationType.KeyEvent;
+
+            settings.autoEnterWay = OutputEnterWay.Disable;
+            //settings.autoEnterWay = OutputEnterWay.SuffixData;
+            //settings.autoEnterWay = OutputEnterWay.PreffixData;
+
+            settings.autoEnterChar = OutputEnterChar.None;
+            //settings.autoEnterChar = OutputEnterChar.Return;
+            //settings.autoEnterChar = OutputEnterChar.Tab;
+            //settings.autoEnterChar = OutputEnterChar.Space;
+            //settings.autoEnterChar = OutputEnterChar.Comma;
+            //settings.autoEnterChar = OutputEnterChar.Semicolon;
+
+            settings.showCodeType = Enable_State.FALSE;
+            //settings.showCodeType = Enable_State.TRUE;
+
+            settings.showCodeLen = Enable_State.FALSE;
+            //settings.showCodeLen = Enable_State.TRUE;
+
+            settings.szPrefixCode = "";
+
+            settings.szSuffixCode = "";
+
+            settings.szPrefixCode = "";
+
+            //settings.szCharsetName = "windows-1252";
+            //settings.szCharsetName = "big5";
+            settings.szCharsetName = "Shift_JIS";
+
+            //settings.clearPreviousData = Enable_State.FALSE;
+            settings.clearPreviousData = Enable_State.TRUE;
+
+            settings.szSuffixCode = "";
+
+            settings.useDelim = ':';
+
+            // Set settings
+            ret = _myReaderManager.Set_ReaderOutputConfiguration(settings);
+            if (ret != ClResult.S_OK)
+            {
+                Toast.makeText(this, "Fail to Set_ReaderOutputConfiguration()", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        //User Preference Configuration
+        {
+            UserPreference _userPreference = new UserPreference();
+
+            //Get settings
+            ret = _myReaderManager.Get_UserPreferences(_userPreference);
+            if (ret != ClResult.S_OK)
+            {
+                Toast.makeText(this, "Fail to Get_UserPreferences()", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            _userPreference.addonSecurityLevel = 10;
+
+            _userPreference.displayMode = Enable_State.FALSE;
+            //_userPreference.displayMode = Enable_State.TRUE;
+
+            _userPreference.laserOnTime = 3000;
+
+            _userPreference.negativeBarcodes = InverseType.RegularOnly;
+            //_userPreference.negativeBarcodes = InverseType.InverseOnly;
+            //_userPreference.negativeBarcodes = InverseType.AutoDetect;
+
+            _userPreference.pickListMode=Enable_State.FALSE;
+            //_userPreference.pickListMode=Enable_State.TRUE;
+
+            _userPreference. redundancyLevel = RedundancyLevel.One;
+            //_userPreference. redundancyLevel = RedundancyLevel.Two;
+            //_userPreference. redundancyLevel = RedundancyLevel.Three;
+            //_userPreference. redundancyLevel = RedundancyLevel.Four;
+
+            _userPreference.securityLevel = SecurityLevel.Zero;
+            //_userPreference.securityLevel = SecurityLevel.One;
+            //_userPreference.securityLevel = SecurityLevel.Two;
+            //_userPreference.securityLevel = SecurityLevel.Three;
+
+            _userPreference.timeoutBetweenSameSymbol = 1000;
+
+            _userPreference.timeoutPresentationMode = 60000;
+
+            _userPreference. transmitCodeIdChar = TransmitCodeIDType.None;
+            //_userPreference. transmitCodeIdChar = TransmitCodeIDType.AimCodeId;
+
+            _userPreference.triggerMode = TriggerType.LevelMode;
+            // _userPreference.triggerMode = TriggerType.PresentationMode;
+
+            //_userPreference.decodingIllumination = Enable_State.FALSE;
+            _userPreference.decodingIllumination = Enable_State.TRUE;
+
+            _userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Ten;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Nine;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Eight;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Seven;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Six;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Five;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Four;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Three;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Two;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.One;
+            //_userPreference.decodingIlluminationPowerLevel = IlluminationPowerLevel.Zero;
+
+            //_userPreference.decodingAimingPattern = Enable_State.FALSE;
+            _userPreference.decodingAimingPattern = Enable_State.TRUE;
+
+
+            //Set settings
+            _myReaderManager.Set_UserPreferences(_userPreference);
+            if (ret != ClResult.S_OK)
+            {
+                Toast.makeText(this, "Fail to Set_UserPreferences()", Toast.LENGTH_SHORT).show();
+            }
+
+            // Notification Setting
+            {
+                NotificationParams _notification = new NotificationParams();
+                //Get Settings
+                ret = _myReaderManager.Get_NotificationParams(_notification);
+                if (ret != ClResult.S_OK)
+                {
+                    Toast.makeText(this, "Fail to Get_NotificationParams()", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                _notification.ReaderBeep = BeepType.Default;
+                //_notification.ReaderBeep = BeepType.Mute;
+                //_notification.ReaderBeep = BeepType.Hwandsw;
+                //_notification.ReaderBeep = BeepType.MenuPop;
+                //_notification.ReaderBeep = BeepType.MsgBox;
+                //_notification.ReaderBeep = BeepType.Notify;
+                //_notification.ReaderBeep = BeepType.VoicBeep;
+                //_notification.ReaderBeep = BeepType.Alarm2;
+                //_notification.ReaderBeep = BeepType.Alarm3;
+                //_notification.ReaderBeep = BeepType.LowBatt;
+                //_notification.ReaderBeep = BeepType.Beep3;
+
+                _notification.enableVibrator = Enable_State.FALSE;
+                //_notification.EnableVibrator = Enable_State.True;
+
+                _notification.vibrationCounter = 1;
+
+                _notification.ledDuration = 500;
+
+                ret = _myReaderManager.Set_NotificationParams(_notification);
+                if (ret != ClResult.S_OK)
+                {
+                    Toast.makeText(this, "Fail to Set_NotificationParams()", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+        }
+    }
+
+
 
 
 }
